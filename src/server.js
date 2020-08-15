@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
+const routes = require('./routes')
+
 const server = express()
 
 const name = process.env.DB_NAME
@@ -19,6 +21,7 @@ mongoose.connect(`mongodb+srv://developer:${pass}@development.1hu5y.mongodb.net/
 server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({extended: true}))
+server.use(routes)
 
 server.listen(3000, () => {
     console.log("server online...")
