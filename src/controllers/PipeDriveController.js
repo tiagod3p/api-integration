@@ -6,6 +6,10 @@ module.exports = {
         try {  
             const wonDeals = await getDealsWithStatusWon()
 
+            if (!wonDeals) return res.status(404).json({
+                message: "No deals with status won yet!"
+            })
+
             const createOrderPromises = wonDeals.map(deal => {
                 return createOrder(deal)
             })
