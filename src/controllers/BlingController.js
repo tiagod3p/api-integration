@@ -3,7 +3,7 @@ const Deal = require("../models/Deal")
 module.exports = {
     async index(req, res) {
         try {
-            const deals = await Deal.find({})
+            const deals = await Deal.find({}).sort({"created_at": 1}).sort({"deal_value": 1})
 
             if (!deals) return res.status(404).json({
                 message: "No deals with status won on database colletions yet!"
